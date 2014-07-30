@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+
+	</h:head>
+	
+	<h:body>
+	
+	<h:form>
+    	<p:growl id="msgs" showDetail="false" />
+	
+        <p:fieldset legend="#{OrganizationStructureView.organizationStructure.prefLabel}" toggleable="true" toggleSpeed="500">
+	        <p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" />
+	        <h:panelGrid columns="2" cellpadding="5" >
+	            <h:outputText value="ID: #{OrganizationStructureView.organizationStructure.notation}"/>
+           		<br></br>
+           		<h:outputText value="SIGLA: #{OrganizationStructureView.organizationStructure.altLabel}"/>
+           		<br></br>
+           		<h:outputText value="SUB-ORGANIZAÇÃO DE: #{OrganizationStructureView.organizationStructure.subOrganizationOf}" escape="false"/>
+           		<br></br>
+           		<h:outputText value="TELEFONE: #{OrganizationStructureView.organizationStructure.hasTelephone}"/>
+           		<br></br>
+           		<h:outputText value="E-MAIL: #{OrganizationStructureView.organizationStructure.hasEmail}"/>
+           		<br></br>
+           		<h:outputText value="SITE: #{OrganizationStructureView.organizationStructure.hasURL}"/>
+           		<br></br>
+	        </h:panelGrid>
+	    </p:fieldset>
+		
+	</h:form>
+		
+	</h:body>
+</html>

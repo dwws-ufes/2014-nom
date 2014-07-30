@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+      
+<f:view contentType="text/html">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>NOM</title>
+	
+</h:head>
+<h:body>
+
+	<!-- 
+	<form action="http://localhost:8080/OntologySearchWeb/ontologySearch.jsp?">
+		<input type="hidden" name="uri" value="http://localhost:8080${requestScope['javax.servlet.forward.request_uri']}"></input>
+		<input type="submit" value="OntologySearch"/>
+	</form>
+	 -->
+	 
+	<table border="1" style="width:100%">
+	
+		<tr>
+			<td style="width:30%"> Property </td>
+			<td style="width:70%"> Value </td>
+		</tr>
+
+		<ui:repeat var="data" value="#{DataController.findRelationships}">
+			<tr>
+				<td><h:outputText value="#{data.predicate}" escape="false"></h:outputText></td>
+				<td><h:outputText value="#{data.object}" escape="false"></h:outputText></td>
+			</tr>	
+		</ui:repeat>
+
+	</table>
+  	
+</h:body>
+
+</f:view>
+</html>

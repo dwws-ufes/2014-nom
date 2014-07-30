@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<f:view contentType="text/html">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>NOM</title>
+	
+	<style type="text/css">
+          .odd{ background-color:#fff}
+          .even{background-color:#ccc}
+          
+          body{
+          	
+          }
+          
+          img{
+          	float:left;
+          }
+          
+          h1{
+          	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          	padding-top: 30px;
+          }
+          
+          h2{
+            border-left: 5px solid blue;
+            padding-left: 10px;
+          }
+          
+          #conteudo{
+          	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+          	border-top: 5px solid blue;	
+          	padding: 10px;
+          	margin: 10px 10px;
+          }
+          
+          a{
+          	color: blue;
+          	text-decoration: none;
+          }
+          
+          a:hover{
+          	text-decoration: underline;
+          }
+          
+          a:selected{
+          	color:blue;
+          }
+          
+          p{
+          	text-align: justify;
+          }
+     </style>  
+	
+</h:head>
+<h:body>
+	<img height="80" src="img/NOM-logo.png"></img> 
+	<h1> Nemo Ontology Mapping</h1>
+	<input type="hidden" name="uri" value="http://localhost:8080${requestScope['javax.servlet.forward.request_uri']}"/>
+	<div style="clear:both" />
+	
+	<div id="conteudo">
+	
+		<div id="menu">
+			<a href="#descricao">DESCRIÇÃO</a> |
+			<a href="#formas-de-uso">FORMAS DE USO</a> |
+			<a href="#sparql">SPARQL ENDPOINT</a> |
+			<a href="#exemplos">EXEMPLOS</a> 
+		</div>
+	
+	    <div id="descricao">
+	      <h2>DESCRIÇÃO</h2>
+	      <p>
+	      	O Nemo Ontology Mapping (NOM) é uma aplicação para visualização e consultas SPARQL de 
+	      	dados governamentais sobre servidores e organizações mapeados com
+	      	a <a href="http://www.w3.org/TR/vocab-org/">Ontologia de Organizações</a>.
+	      	Esses dados são apresentados em RDF, onde cada recurso é representado por uma URI 
+	      	(em forma de URL) ou Literal. Com isso, é possível derreferenciar as URIs, ou seja,
+	      	obter algum resultado quando alguma URI é pesquisada. 
+	      </p>
+	    </div>
+	    
+	    <div id="formas-de-uso">
+	      <h2>FORMAS DE USO</h2>
+	      <p>
+	      	Há quatro forma de derreferenciar as URIs que são apresentas abaixo:
+	      </p>
+	      <ol> 
+	      	<li><b>URI</b> : Trás o resultado em tabela.</li>
+	      	<li><b>URI + ".rdf"</b> : Trás o resultado em RDF. </li>
+	      	<li><b>URI + ".html"</b> : Trás o resultado em uma visualização mais agradável.</li>
+	      	<li><b>URI + ".graph"</b> : Trás o resultado em Grafo.</li>
+	      </ol>
+	    </div>
+	    
+	    <div id="sparql">
+	      <h2>SPARQL ENDPOINT</h2>
+	      <p>
+	      	Duas formas de realizar consulta SPARQL são disponíveis. A primeira é o <i>SPARQL Query Editor</i> que
+	      	permite realizar consultas simples (em código) e a segunda é um SPARQL interativo (iSPARQL) no qual
+	      	é possível realizar consultas através de grafos visuais.  
+	      </p>
+	      <ul>
+	      	<li><a href="http://localhost:8080/NOM/sparql">SPARQL Query Editor</a></li>
+	      	<li><a href="http://localhost:8080/NOM/isparql">iSPARQL</a></li>
+	      </ul>
+	    </div>
+	    
+	    <div id="exemplos">
+	      <h2>EXEMPLOS</h2>
+	      <p>
+		      Abaixo são apresentados exemplos das formas de derreferenciar uma URI. 
+		      Em seguida, é apresentado o resultado ao derreferenciar a primeira das 
+		      quatro formas possíveis.       
+	      </p>
+	      <ol>
+	      	<li><b>URI:</b> <a href="http://localhost:8080/NOM/resource/person/1682175">http://localhost:8080/NOM/resource/person/1682175</a></li>
+	      	<li><b>RDF:</b> <a href="http://localhost:8080/NOM/resource/person/1682175.rdf">http://localhost:8080/NOM/resource/person/1682175.rdf</a></li>
+	      	<li><b>HTML:</b> <a href="http://localhost:8080/NOM/resource/person/1682175.html">http://localhost:8080/NOM/resource/person/1682175.html</a></li>
+	      	<li><b>GRAPH:</b> <a href="http://localhost:8080/NOM/resource/person/1682175.graph">http://localhost:8080/NOM/resource/person/1682175.graph</a></li>
+	      </ol>
+	      
+	      <table border="1" style="width:100%">
+			
+				<tr>
+					<td style="width:30%"> Property </td>
+					<td style="width:35%"> Value </td>
+				</tr>
+				
+				<ui:repeat var="data" value="#{DataController.findAllRelationships}">
+				
+					<tr>
+						<td><h:outputText value="#{data.predicate}" escape="false"></h:outputText></td>
+						<td><h:outputText value="#{data.object}" escape="false"></h:outputText></td>
+					</tr>	
+					
+				</ui:repeat>		
+				
+			</table>
+	      
+	    </div>
+	    
+	</div>
+	
+</h:body>
+
+</f:view>
+</html>
